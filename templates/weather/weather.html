@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home - Weather Tracker
+{% endblock %}
+
+{% block content %}
+    <h1>Weather Tracker</h1>
+
+    <div class="card mt-4 mb-4">
+        <div class="card-body">
+            <form method="post">{% csrf_token %}
+                <div class="mb-3">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Add City
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% if message %}
+        <div class="alert {{ message_class }}" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for data in weather_data %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="http://openweathermap.org/img/wn/{{ data.icon }}@2x.png" class="card-img-top" alt="Weather icon">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.city }}</h5>
+                        <p class="card-text">Temperature: {{ data.temperature }}&deg;C</p>
+                        <p class="card-text">Description: {{ data.description }}</p>
+                        <a href="{% url 'delete_city' data.city %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

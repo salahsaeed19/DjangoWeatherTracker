@@ -30,6 +30,5 @@ Below are screenshots of the main pages of the DjangoWeatherTracker application:
 #### Help Page
 ![Help Page](https://github.com/user-attachments/assets/2dc36af2-b598-477e-b8df-a9a05bb2ca46)
 
-
 ### License:
 This project is licensed under the [MIT License](LICENSE).
